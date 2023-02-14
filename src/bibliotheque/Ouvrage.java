@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Ouvrage {
     protected String titre;
-    protected byte ageMin;
+    protected int ageMin;
     protected LocalDate dateParution;
     protected TypeOuvrage typeOuvrage;
     protected double prixLocation ;
@@ -15,7 +15,7 @@ public abstract class Ouvrage {
     protected List<Exemplaire> exemplaires = new ArrayList<>();
     protected List<Auteur> auteurs = new ArrayList<>();
 
-    public Ouvrage(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre) {
+    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre) {
         this.titre = titre;
         this.ageMin = ageMin;
         this.dateParution = dateParution;
@@ -33,11 +33,11 @@ public abstract class Ouvrage {
         this.titre = titre;
     }
 
-    public byte getAgeMin() {
+    public int getAgeMin() {
         return ageMin;
     }
 
-    public void setAgeMin(byte ageMin) {
+    public void setAgeMin(int ageMin) {
         this.ageMin = ageMin;
     }
 
@@ -107,8 +107,6 @@ public abstract class Ouvrage {
                 ", prixLocation =" + prixLocation +
                 ", langue ='" + langue + '\'' +
                 ", genre ='" + genre + '\'' +
-                ", exemplaires =" + exemplaires +
-                ", auteurs =" + auteurs +
                 '}';
     }
 }

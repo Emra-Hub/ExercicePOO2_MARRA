@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,12 +9,12 @@ import java.util.Objects;
 public class DVD extends Ouvrage {
     private long code;
     private LocalTime dureeTotale;
-    private byte nbreBonus;
+    private int nbreBonus;
     private List<String> autresLangues = new ArrayList<>();
     private List<String> sousTitres = new ArrayList<>();
 
-    public DVD(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, long code, LocalTime dureeTotale, byte nbreBonus, List<String> autresLangues, List<String> sousTitres) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre);
+    public DVD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, LocalTime dureeTotale, int nbreBonus, List<String> autresLangues, List<String> sousTitres) {
+        super(titre, ageMin, dateParution, TypeOuvrage.DVD, prixLocation, langue, genre);
         this.code = code;
         this.dureeTotale = dureeTotale;
         this.nbreBonus = nbreBonus;
@@ -38,11 +38,11 @@ public class DVD extends Ouvrage {
         this.dureeTotale = dureeTotale;
     }
 
-    public byte getNbreBonus() {
+    public int getNbreBonus() {
         return nbreBonus;
     }
 
-    public void setNbreBonus(byte nbreBonus) {
+    public void setNbreBonus(int nbreBonus) {
         this.nbreBonus = nbreBonus;
     }
 

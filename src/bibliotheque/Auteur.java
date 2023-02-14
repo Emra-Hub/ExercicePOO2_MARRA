@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,11 @@ public class Auteur {
         this.nom = nom;
         this.prenom = prenom;
         this.nationalite = nationalite;
+    }
+
+    public void add (Ouvrage ouv){
+        getOuvrages().add(ouv);
+        ouv.getAuteurs().add(this);
     }
 
     public String getNom() {
@@ -51,7 +56,6 @@ public class Auteur {
                 "nom ='" + nom + '\'' +
                 ", prenom ='" + prenom + '\'' +
                 ", nationalite ='" + nationalite + '\'' +
-                ", ouvrages =" + ouvrages +
                 '}';
     }
 }

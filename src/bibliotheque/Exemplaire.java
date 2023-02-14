@@ -1,26 +1,28 @@
-package Classes;
+package bibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Exemplaire {
-    private long matricule;
+    private String matricule;
     private String descriptionEtat;
+    private Rayon rayon;
     private Ouvrage ouvrage;
     private List<Location> locations = new ArrayList<>();
 
-    public Exemplaire(long matricule, String descriptionEtat, Ouvrage ouvrage) {
+
+    public Exemplaire(String matricule, String descriptionEtat, Ouvrage ouvrage) {
         this.matricule = matricule;
         this.descriptionEtat = descriptionEtat;
         this.ouvrage = ouvrage;
     }
 
-    public long getMatricule() {
+    public String getMatricule() {
         return matricule;
     }
 
-    public void setMatricule(long matricule) {
+    public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
 
@@ -40,6 +42,14 @@ public class Exemplaire {
         this.ouvrage = ouvrage;
     }
 
+    public Rayon getRayon() {
+        return rayon;
+    }
+
+    public void setRayon(Rayon rayon) {
+        this.rayon = rayon;
+    }
+
     public List<Location> getLocations() {
         return locations;
     }
@@ -53,7 +63,7 @@ public class Exemplaire {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Exemplaire that = (Exemplaire) o;
-        return matricule == that.matricule;
+        return Objects.equals(matricule, that.matricule);
     }
 
     @Override
@@ -64,10 +74,10 @@ public class Exemplaire {
     @Override
     public String toString() {
         return "Exemplaire{" +
-                "matricule =" + matricule +
+                "matricule ='" + matricule + '\'' +
                 ", descriptionEtat ='" + descriptionEtat + '\'' +
+                ", rayon =" + rayon +
                 ", ouvrage =" + ouvrage +
-                ", locations =" + locations +
                 '}';
     }
 }

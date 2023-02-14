@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class CD extends Ouvrage {
     private long code;
-    private byte nbrePlages;
+    private int nbrePlages;
     private LocalTime dureeTotale;
 
-    public CD(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre);
+    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, int nbrePlages, LocalTime dureeTotale) {
+        super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
         this.code = code;
         this.nbrePlages = nbrePlages;
         this.dureeTotale = dureeTotale;
@@ -24,11 +24,11 @@ public class CD extends Ouvrage {
         this.code = code;
     }
 
-    public byte getNbrePlages() {
+    public int getNbrePlages() {
         return nbrePlages;
     }
 
-    public void setNbrePlages(byte nbrePlages) {
+    public void setNbrePlages(int nbrePlages) {
         this.nbrePlages = nbrePlages;
     }
 

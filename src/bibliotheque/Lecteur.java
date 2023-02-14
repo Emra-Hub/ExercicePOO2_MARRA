@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lecteur {
-    private long numLecteur;
+    private int numLecteur;
     private String nom, prenom;
     private LocalDate dateNaiss;
     private String mail, adresse, tel;
     private List<Location> locations = new ArrayList<>();
 
-    public Lecteur(long numLecteur, String nom, String prenom, LocalDate dateNaiss, String mail, String adresse, String tel) {
+    public Lecteur(int numLecteur, String nom, String prenom, LocalDate dateNaiss, String mail, String adresse, String tel) {
         this.numLecteur = numLecteur;
         this.nom = nom;
         this.prenom = prenom;
@@ -22,11 +22,11 @@ public class Lecteur {
         this.tel = tel;
     }
 
-    public long getNumLecteur() {
+    public int getNumLecteur() {
         return numLecteur;
     }
 
-    public void setNumLecteur(long numLecteur) {
+    public void setNumLecteur(int numLecteur) {
         this.numLecteur = numLecteur;
     }
 
@@ -109,7 +109,6 @@ public class Lecteur {
                 ", mail ='" + mail + '\'' +
                 ", adresse ='" + adresse + '\'' +
                 ", tel ='" + tel + '\'' +
-                ", locations =" + locations +
                 '}';
     }
 }

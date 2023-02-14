@@ -1,4 +1,4 @@
-package Classes;
+package bibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,6 @@ public class Rayon {
         return "Rayon{" +
                 "codeRayon ='" + codeRayon + '\'' +
                 ", genre ='" + genre + '\'' +
-                ", exemplaires =" + exemplaires +
                 '}';
     }
 }
