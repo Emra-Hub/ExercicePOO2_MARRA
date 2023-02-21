@@ -10,7 +10,7 @@ public class Lecteur {
     private String nom, prenom;
     private LocalDate dateNaiss;
     private String mail, adresse, tel;
-    private List<Location> locations = new ArrayList<>();
+    private List<Location> llou = new ArrayList<>();
 
     public Lecteur(int numLecteur, String nom, String prenom, LocalDate dateNaiss, String mail, String adresse, String tel) {
         this.numLecteur = numLecteur;
@@ -78,12 +78,12 @@ public class Lecteur {
         this.tel = tel;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public List<Location> getLlou() {
+        return llou;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public void setLlou(List<Location> llou) {
+        this.llou = llou;
     }
 
     @Override
@@ -110,5 +110,15 @@ public class Lecteur {
                 ", adresse ='" + adresse + '\'' +
                 ", tel ='" + tel + '\'' +
                 '}';
+    }
+
+    public List<Exemplaire> listerExemplairesEnLocation() {
+        //TODO coder liste des exemplaires en location
+        return null;
+    }
+
+    public List<Exemplaire> listerExemplairesLoues() {
+        //TODO coder liste des exemplaires déjà loués
+        return null;
     }
 }

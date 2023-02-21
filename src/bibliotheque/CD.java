@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public class CD extends Ouvrage {
     private long code;
-    private int nbrePlages;
+    private byte nbrePlages;
     private LocalTime dureeTotale;
 
-    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, int nbrePlages, LocalTime dureeTotale) {
+    public CD(String titre, byte ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) {
         super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
         this.code = code;
         this.nbrePlages = nbrePlages;
@@ -24,11 +24,11 @@ public class CD extends Ouvrage {
         this.code = code;
     }
 
-    public int getNbrePlages() {
+    public byte getNbrePlages() {
         return nbrePlages;
     }
 
-    public void setNbrePlages(int nbrePlages) {
+    public void setNbrePlages(byte nbrePlages) {
         this.nbrePlages = nbrePlages;
     }
 
@@ -65,5 +65,11 @@ public class CD extends Ouvrage {
                 ", langue ='" + langue + '\'' +
                 ", genre ='" + genre + '\'' +
                 '}';
+    }
+
+    @Override
+    public double amendeRetard(int njours) {
+        //TODO coder la méthode amendeRetard
+        return 0;
     }
 }

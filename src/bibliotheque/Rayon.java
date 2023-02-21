@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Rayon {
     private String codeRayon, genre;
-    private List<Exemplaire> exemplaires = new ArrayList<>();
+    private List<Exemplaire> lex = new ArrayList<>();
 
     public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;
@@ -29,12 +29,12 @@ public class Rayon {
         this.genre = genre;
     }
 
-    public List<Exemplaire> getExemplaires() {
-        return exemplaires;
+    public List<Exemplaire> getLex() {
+        return lex;
     }
 
-    public void setExemplaires(List<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
+    public void setLex(List<Exemplaire> lex) {
+        this.lex = lex;
     }
 
     @Override
@@ -56,5 +56,15 @@ public class Rayon {
                 "codeRayon ='" + codeRayon + '\'' +
                 ", genre ='" + genre + '\'' +
                 '}';
+    }
+
+    public void addExemplaire(Exemplaire e) {
+        lex.add(e);
+        e.setRayon(this);
+    }
+
+    public List<Exemplaire> listerExamplaires() {
+        //TODO coder liste des exemplaires
+        return null;
     }
 }

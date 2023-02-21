@@ -9,7 +9,7 @@ public class Exemplaire {
     private String descriptionEtat;
     private Rayon rayon;
     private Ouvrage ouvrage;
-    private List<Location> locations = new ArrayList<>();
+    private List<Location> lloc = new ArrayList<>();
 
 
     public Exemplaire(String matricule, String descriptionEtat, Ouvrage ouvrage) {
@@ -50,12 +50,12 @@ public class Exemplaire {
         this.rayon = rayon;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public List<Location> getLloc() {
+        return lloc;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public void setLloc(List<Location> lloc) {
+        this.lloc = lloc;
     }
 
     @Override
@@ -79,5 +79,42 @@ public class Exemplaire {
                 ", rayon =" + rayon +
                 ", ouvrage =" + ouvrage +
                 '}';
+    }
+
+    public void modifierEtat(String etat) {
+        //TODO coder méthode modifier état
+    }
+
+    public Lecteur lecteurActuel() {
+        //TODO coder le lecteur
+        return null;
+    }
+
+    public List<Lecteur> lecteurs() {
+        //TODO coder les lecteurs
+        return null;
+    }
+
+    public void envoiMailLecteurActuel(Mail mail) {
+        //TODO coder mail du lecteur
+    }
+
+    public void envoiMailLecteurs(Mail mail) {
+        //TODO coder liste mails des lecteurs
+    }
+
+    public boolean enRetard() {
+        //TODO coder méthode enRetard
+        return false;
+    }
+
+    public int joursRetard() {
+        //TODO coder méthode joursRetard
+        return 0;
+    }
+
+    public boolean enLocation() {
+        //TODO coder méthode enLocation
+        return false;
     }
 }

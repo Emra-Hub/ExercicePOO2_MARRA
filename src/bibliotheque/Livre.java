@@ -9,7 +9,7 @@ public class Livre extends Ouvrage{
     private TypeLivre typeLivre;
     private String resume;
 
-    public Livre(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nombrePages, TypeLivre typeLivre, String resume) {
+    public Livre(String titre, byte ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nombrePages, TypeLivre typeLivre, String resume) {
         super(titre, ageMin, dateParution, TypeOuvrage.LIVRE, prixLocation, langue, genre);
         this.isbn = isbn;
         this.nombrePages = nombrePages;
@@ -75,5 +75,11 @@ public class Livre extends Ouvrage{
                 ", langue ='" + langue + '\'' +
                 ", genre ='" + genre + '\'' +
                 '}';
+    }
+
+    @Override
+    public double amendeRetard(int njours) {
+        //TODO coder la méthode amendeRetard
+        return 0;
     }
 }

@@ -6,14 +6,16 @@ public class Location {
     private LocalDate dateLoc, dateRestitution;
     private double amende;
     private Exemplaire exemplaire;
-    private Lecteur lecteur;
+    private Lecteur loueur;
 
-    public Location(LocalDate dateLoc, LocalDate dateRestitution, double amende, Exemplaire exemplaire, Lecteur lecteur) {
+    public Location(LocalDate dateLoc, LocalDate dateRestitution, double amende, Exemplaire exemplaire, Lecteur loueur) {
         this.dateLoc = dateLoc;
         this.dateRestitution = dateRestitution;
         this.amende = amende;
         this.exemplaire = exemplaire;
-        this.lecteur = lecteur;
+        this.exemplaire.getLloc().add(this);
+        this.loueur = loueur;
+        this.loueur.getLlou().add(this);
     }
 
     public LocalDate getDateLoc() {
@@ -48,12 +50,12 @@ public class Location {
         this.exemplaire = exemplaire;
     }
 
-    public Lecteur getLecteur() {
-        return lecteur;
+    public Lecteur getLoueur() {
+        return loueur;
     }
 
-    public void setLecteur(Lecteur lecteur) {
-        this.lecteur = lecteur;
+    public void setLoueur(Lecteur loueur) {
+        this.loueur = loueur;
     }
 
     @Override
@@ -63,7 +65,15 @@ public class Location {
                 ", dateRestitution =" + dateRestitution +
                 ", amende =" + amende +
                 ", exemplaire =" + exemplaire +
-                ", lecteur =" + lecteur +
+                ", loueur =" + loueur +
                 '}';
+    }
+
+    public void calculerAmende() {
+        //TODO coder la méthode calculerAmende
+    }
+
+    public void enregistrerRetour() {
+        //TODO coder la méthode enregistrerRetour
     }
 }

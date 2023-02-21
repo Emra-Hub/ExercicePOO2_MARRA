@@ -6,16 +6,16 @@ import java.util.List;
 
 public abstract class Ouvrage {
     protected String titre;
-    protected int ageMin;
+    protected byte ageMin;
     protected LocalDate dateParution;
     protected TypeOuvrage typeOuvrage;
     protected double prixLocation ;
     protected String langue;
     protected String genre;
-    protected List<Exemplaire> exemplaires = new ArrayList<>();
-    protected List<Auteur> auteurs = new ArrayList<>();
+    protected List<Exemplaire> lex = new ArrayList<>();
+    protected List<Auteur> laut = new ArrayList<>();
 
-    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre) {
+    public Ouvrage(String titre, byte ageMin, LocalDate dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre) {
         this.titre = titre;
         this.ageMin = ageMin;
         this.dateParution = dateParution;
@@ -33,11 +33,11 @@ public abstract class Ouvrage {
         this.titre = titre;
     }
 
-    public int getAgeMin() {
+    public byte getAgeMin() {
         return ageMin;
     }
 
-    public void setAgeMin(int ageMin) {
+    public void setAgeMin(byte ageMin) {
         this.ageMin = ageMin;
     }
 
@@ -81,20 +81,20 @@ public abstract class Ouvrage {
         this.genre = genre;
     }
 
-    public List<Exemplaire> getExemplaires() {
-        return exemplaires;
+    public List<Exemplaire> getLex() {
+        return lex;
     }
 
-    public void setExemplaires(List<Exemplaire> exemplaires) {
-        this.exemplaires = exemplaires;
+    public void setLex(List<Exemplaire> lex) {
+        this.lex = lex;
     }
 
-    public List<Auteur> getAuteurs() {
-        return auteurs;
+    public List<Auteur> getLaut() {
+        return laut;
     }
 
-    public void setAuteurs(List<Auteur> auteurs) {
-        this.auteurs = auteurs;
+    public void setLaut(List<Auteur> laut) {
+        this.laut = laut;
     }
 
     @Override
@@ -109,4 +109,16 @@ public abstract class Ouvrage {
                 ", genre ='" + genre + '\'' +
                 '}';
     }
+
+    public List<Exemplaire> listerExemplaires() {
+        //TODO coder liste exemplaires
+        return null;
+    }
+
+    public List<Exemplaire> listerExemplaires(boolean enLocation) {
+        //TODO coder liste exemplaires en location
+        return null;
+    }
+
+    public abstract double amendeRetard(int njours);
 }
