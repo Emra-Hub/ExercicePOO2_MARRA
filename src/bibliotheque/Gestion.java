@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Gestion {
@@ -14,6 +15,8 @@ public class Gestion {
     private static List<Exemplaire> lex = new ArrayList<>();
     private static List<Rayon> lrayon= new ArrayList<>();
     private static List<Location> lloc = new ArrayList<>();
+
+    private static Scanner sc = new Scanner(System.in);
 
     public static void populate(){
         Auteur a = new Auteur("Verne","Jules","France");
@@ -118,7 +121,6 @@ public class Gestion {
 
     private static void gestAuteurs() {
         System.out.println("---Ajout Auteur---");
-        Scanner sc = new Scanner(System.in);
         System.out.print("Nom : ");
         String nom = sc.nextLine();
         System.out.print("Prénom : ");
@@ -133,10 +135,8 @@ public class Gestion {
 
     private static void gestOuvrages() {
         System.out.println("---Ajout Ouvrage---");
-        Scanner sc = new Scanner(System.in);
         System.out.println("Type d'ouvrage : ");
-        int i;
-        for (i = 0 ; i < TypeOuvrage.values().length ; i++) {
+        for (int i = 0 ; i < TypeOuvrage.values().length ; i++) {
             System.out.println(i+1+"."+TypeOuvrage.values()[i]);
         }
         int choix;
@@ -181,35 +181,29 @@ public class Gestion {
             int nbrePages = sc.nextInt();
 
             System.out.println("Type livre : ");
-            for (i = 0 ; i < TypeLivre.values().length ; i++) {
+            for (int i = 0 ; i < TypeLivre.values().length ; i++) {
                 System.out.println(i+1+"."+TypeLivre.values()[i]);
             }
-            System.out.print("Votre choix : ");
-            int typeLivre = sc.nextInt();
-            typeLivre--; //Afin de correspondre au bon choix de l'énum
+            int tLivre;
+            do {
+                System.out.print("Votre choix : ");
+                tLivre = sc.nextInt();
+            } while (tLivre < 1 || tLivre > TypeLivre.values().length);
+            tLivre--; //Afin de correspondre au bon choix de l'énum
             sc.nextLine();
 
             System.out.print("Résumé : ");
             String resume = sc.nextLine();
 
-            Livre l = new Livre(titre,(byte)age,LocalDate.of(annee,mois,jour),prix,langue,genre,isbn,nbrePages,TypeLivre.values()[typeLivre],resume);
+            Livre l = new Livre(titre,(byte)age,LocalDate.of(annee,mois,jour),prix,langue,genre,isbn,nbrePages,TypeLivre.values()[tLivre],resume);
             louv.add(l);
 
             System.out.println("Auteur du livre : ");
-            int choixAut = -1; //Afin qu'il passe au moins 1x dans la boucle
-
-            while(choixAut != laut.size()) {
-                for(i = 0 ; i < laut.size() ; i++) {
-                    System.out.println(i+1+". "+laut.get(i).getPrenom()+" "+laut.get(i).getNom());
-                }
-                System.out.println(laut.size()+1+". Fin");
-                System.out.print("Votre choix : ");
-                choixAut = sc.nextInt() - 1;
-                if (choixAut >= 0 && choixAut < laut.size()) {
-                    laut.get(choixAut).addOuvrage(l);
-                }
-            }
+            choixAuteur(l);
             System.out.println("Livre ajouté.");
+
+            System.out.println(l);
+            System.out.println(l.getLaut());
 
         } else if(choix == 2) {
             System.out.println("Ajout CD : ");
@@ -256,20 +250,11 @@ public class Gestion {
             louv.add(c);
 
             System.out.println("Auteur du CD : ");
-            int choixAut = -1; //Afin qu'il passe au moins 1x dans la boucle
-
-            while(choixAut != laut.size()) {
-                for(i = 0 ; i < laut.size() ; i++) {
-                    System.out.println(i+1+". "+laut.get(i).getPrenom()+" "+laut.get(i).getNom());
-                }
-                System.out.println(laut.size()+1+". Fin");
-                System.out.print("Votre choix : ");
-                choixAut = sc.nextInt() - 1;
-                if (choixAut >= 0 && choixAut < laut.size()) {
-                    laut.get(choixAut).addOuvrage(c);
-                }
-            }
+            choixAuteur(c);
             System.out.println("CD ajouté.");
+
+            System.out.println(c);
+            System.out.println(c.getLaut());
 
         } else {
             System.out.println("Ajout DVD : ");
@@ -317,26 +302,32 @@ public class Gestion {
             louv.add(d);
 
             System.out.println("Auteur du DVD : ");
-            int choixAut = -1; //Afin qu'il passe au moins 1x dans la boucle
-
-            while(choixAut != laut.size()) {
-                for(i = 0 ; i < laut.size() ; i++) {
-                    System.out.println(i+1+". "+laut.get(i).getPrenom()+" "+laut.get(i).getNom());
-                }
-                System.out.println(laut.size()+1+". Fin");
-                System.out.print("Votre choix : ");
-                choixAut = sc.nextInt() - 1;
-                if (choixAut >= 0 && choixAut < laut.size()) {
-                    laut.get(choixAut).addOuvrage(d);
-                }
-            }
+            choixAuteur(d);
             System.out.println("DVD ajouté.");
+
+            System.out.println(d);
+            System.out.println(d.getLaut());
+        }
+    }
+
+    private static void choixAuteur(Ouvrage o) {
+        int choixAut = -1; //Afin qu'il passe au moins 1x dans la boucle
+
+        while(choixAut != laut.size()) {
+            for(int i = 0 ; i < laut.size() ; i++) {
+                System.out.println(i+1+". "+laut.get(i).getPrenom()+" "+laut.get(i).getNom());
+            }
+            System.out.println(laut.size()+1+". Fin");
+            System.out.print("Votre choix : ");
+            choixAut = sc.nextInt() - 1;
+            if (choixAut >= 0 && choixAut < laut.size()) {
+                laut.get(choixAut).addOuvrage(o);
+            }
         }
     }
 
     private static void gestLecteurs() {
         System.out.println("---Ajout Lecteur---");
-        Scanner sc = new Scanner(System.in);
         System.out.print("Numéro lecteur : ");
         int num = sc.nextInt();
         sc.nextLine();
@@ -369,7 +360,6 @@ public class Gestion {
 
     private static void gestRayons() {
         System.out.println("---Ajout Rayon---");
-        Scanner sc = new Scanner(System.in);
         System.out.print("Code rayon : ");
         String codeRayon = sc.nextLine();
         System.out.print("Genre : ");
