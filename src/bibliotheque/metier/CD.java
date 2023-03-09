@@ -1,19 +1,19 @@
-package bibliotheque;
+package bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class CD extends Ouvrage {
+public class CD extends Ouvrage{
     private long code;
     private byte nbrePlages;
     private LocalTime dureeTotale;
 
-    public CD(String titre, byte ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) {
+    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) {
         super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
-        this.code = code;
-        this.nbrePlages = nbrePlages;
-        this.dureeTotale = dureeTotale;
+        this.code=code;
+        this.nbrePlages=nbrePlages;
+        this.dureeTotale=dureeTotale;
     }
 
     public long getCode() {
@@ -52,24 +52,23 @@ public class CD extends Ouvrage {
     public int hashCode() {
         return Objects.hash(code);
     }
-
     @Override
-    public String toString() {
-        return "CD{" +
-                "code =" + code +
-                ", nbrePlages =" + nbrePlages +
-                ", dureeTotale =" + dureeTotale +
-                ", titre ='" + titre + '\'' +
-                ", dateParution =" + dateParution +
-                ", typeOuvrage =" + typeOuvrage +
-                ", langue ='" + langue + '\'' +
-                ", genre ='" + genre + '\'' +
-                '}';
+    public double amendeRetard(int njours) {
+
+        return njours*0.50;
     }
 
     @Override
-    public double amendeRetard(int njours) {
-        //TODO coder la méthode amendeRetard
-        return 0;
+    public int njlocmax() {
+        return 7;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"CD{" +
+                "code=" + code +
+                ", nbrePlages=" + nbrePlages +
+                ", dureeTotale='" + dureeTotale + '\'' +
+                "} " ;
     }
 }
