@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Ouvrage {
+public abstract class Ouvrage  implements Comparable {
     protected String titre;
     protected int ageMin;
     protected LocalDate dateParution;
@@ -144,5 +144,10 @@ public abstract class Ouvrage {
             if(ex.enLocation()==enLocation) lex2.add(ex);
         }
         return lex2;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.titre.compareTo(((Ouvrage)o).titre);
     }
 }

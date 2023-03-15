@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Exemplaire {
+public class Exemplaire implements Comparable {
 
     private String matricule;
     private String descriptionEtat;
@@ -151,6 +151,8 @@ public class Exemplaire {
         return false;
     }
 
-
-
+    @Override
+    public int compareTo(Object o) {
+        return this.matricule.compareTo(((Exemplaire)o).matricule);
+    }
 }
