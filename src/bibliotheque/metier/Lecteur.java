@@ -122,16 +122,11 @@ public class Lecteur {
     }
 
     public Set<Exemplaire> listerExemplairesLoues(){
-        List<Exemplaire> lex = new ArrayList<>();
+        Set<Exemplaire> lex = new HashSet<>();
         for(Location loc : lloc){
             lex.add(loc.getExemplaire());
             //TODO empêcher doublon si exemplaire loué plusieurs fois par même lecteur
-            Set<Exemplaire> ex = new TreeSet<>();
-            for (Exemplaire e : lex) {
-                ex.add(e);
-                return ex;
-            }
         }
-        return null;
+        return lex;
     }
 }
