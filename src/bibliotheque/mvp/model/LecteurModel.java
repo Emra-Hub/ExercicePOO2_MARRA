@@ -38,6 +38,7 @@ public class LecteurModel implements DAOLecteur {
             return lec;
         }
         else return null;
+
     }
 }
 

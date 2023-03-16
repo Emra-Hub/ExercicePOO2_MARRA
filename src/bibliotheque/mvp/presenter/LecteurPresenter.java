@@ -45,4 +45,5 @@ public class LecteurPresenter {
         List<Lecteur> lecteurs = model.getLecteurs();
         view.setListDatas(lecteurs);
     }
+
 }

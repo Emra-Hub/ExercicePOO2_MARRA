@@ -127,11 +127,18 @@ public class Gestion {
     private void gestLocations() {
         int choix;
         //TODO ne lister que les exemplaires libres et les trier par matricule
-        Collections.sort(lex);
+        /*for (int i = 0; i < lex.size(); i++) {
+            if(!lex.get(i).getLloc().isEmpty() || lex.get(i).getLloc().isEmpty())
+                //System.out.println((i + 1) + ". " + lex.get(i));
+            for (int j = 0; j < lex.get(i).getLloc().size(); j++) {
+                if (lex.get(i).getLloc().get(j).getDateRestitution()!=null) le.add(lex.get(i));
+            }
+        }*/
         List<Exemplaire> le = new ArrayList<>();
         for (Exemplaire e: lex) {
             if (!e.enLocation()) le.add(e);
         }
+        Collections.sort(le);
         choix = Utilitaire.choixListe(le);
         /*if(lex.get(choix-1).enLocation()){
             System.out.println("exemplaire en location");

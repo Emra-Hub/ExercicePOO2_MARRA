@@ -102,6 +102,7 @@ public class LecteurViewConsole implements LecteurViewInterface {
         } while (true);
     }
 
+
     private void modifier() {
         //TODO choisir elt et demander les nouvelles valeurs puis appeler méthode maj(lecteur) (à développer) du presenter
         Utilitaire.affListe(llec);
@@ -109,6 +110,7 @@ public class LecteurViewConsole implements LecteurViewInterface {
         Lecteur lecteur = llec.get(choix-1);
         opModification(lecteur);
     }
+
 
     private void retirer() {
         int choix = Utilitaire.choixElt(llec);
