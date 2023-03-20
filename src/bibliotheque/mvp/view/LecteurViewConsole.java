@@ -105,17 +105,22 @@ public class LecteurViewConsole implements LecteurViewInterface {
 
     private void modifier() {
         //TODO choisir elt et demander les nouvelles valeurs puis appeler méthode maj(lecteur) (à développer) du presenter
-        Utilitaire.affListe(llec);
-        int choix = Utilitaire.choixElt(llec);
-        Lecteur lecteur = llec.get(choix-1);
-        opModification(lecteur);
+        if(!llec.isEmpty()) {
+            Utilitaire.affListe(llec);
+            int choix = Utilitaire.choixElt(llec);
+            Lecteur lecteur = llec.get(choix - 1);
+            opModification(lecteur);
+        } else System.out.println("Aucun élément présent dans la liste");
     }
 
 
     private void retirer() {
-        int choix = Utilitaire.choixElt(llec);
-        Lecteur lecteur = llec.get(choix-1);
-        presenter.removeLecteur(lecteur);
+        if(!llec.isEmpty()) {
+            Utilitaire.affListe(llec);
+            int choix = Utilitaire.choixElt(llec);
+            Lecteur lecteur = llec.get(choix - 1);
+            presenter.removeLecteur(lecteur);
+        } else System.out.println("Aucun élément présent dans la liste");
     }
 
 
