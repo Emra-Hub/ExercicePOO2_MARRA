@@ -37,7 +37,7 @@ public class LecteurViewConsole implements LecteurViewInterface {
     }
 
     public void menu() {
-        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "modifier", "fin"));
+        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "modifier", "retour"));
         do {
             int ch = Utilitaire.choixListe(options);
             switch (ch) {
@@ -51,7 +51,7 @@ public class LecteurViewConsole implements LecteurViewInterface {
                     modifier();
                     break;
                 case 4:
-                    System.exit(0);
+                    return;
             }
         } while (true);
     }
