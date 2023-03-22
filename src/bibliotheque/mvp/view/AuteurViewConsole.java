@@ -38,7 +38,7 @@ public class AuteurViewConsole implements AuteurViewInterface {
     }
 
     public void menu() {
-        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "modifier", "retour"));
+        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "modifier", "fin"));
         do {
             int ch = Utilitaire.choixListe(options);
             switch (ch) {
@@ -52,7 +52,7 @@ public class AuteurViewConsole implements AuteurViewInterface {
                     modifier();
                     break;
                 case 4:
-                    return;
+                    System.exit(0);
             }
         } while (true);
     }
