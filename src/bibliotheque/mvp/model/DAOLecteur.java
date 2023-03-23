@@ -9,8 +9,11 @@ public interface DAOLecteur {
 
     boolean removeLecteur(Lecteur lec);
 
+    Lecteur updateLecteur(Lecteur lec);
+
+    Lecteur readLecteur(int idLecteur);
+
     List<Lecteur> getLecteurs();
 
-    Lecteur majLecteur(Lecteur lec);
 
 }

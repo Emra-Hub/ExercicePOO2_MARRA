@@ -9,7 +9,9 @@ public interface DAOAuteur {
 
     boolean removeAuteur(Auteur aut);
 
-    List<Auteur> getAuteurs();
+    Auteur updateAuteur(Auteur aut);
 
-    Auteur majAuteur(Auteur aut);
+    Auteur readAuteur(String nom, String prenom, String nationalite);
+
+    List<Auteur> getAuteurs();
 }

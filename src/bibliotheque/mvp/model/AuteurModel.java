@@ -8,6 +8,10 @@ import java.util.List;
 public class AuteurModel implements DAOAuteur {
     private List<Auteur> auteurs = new ArrayList<>();
 
+    public AuteurModel() {
+        populate();
+    }
+
     @Override
     public Auteur addAuteur(Auteur aut) {
         boolean present = auteurs.contains(aut);
@@ -24,16 +28,28 @@ public class AuteurModel implements DAOAuteur {
     }
 
     @Override
+    public Auteur updateAuteur(Auteur aut) {
+        int p = auteurs.indexOf(aut);
+        if (p < 0) return null;
+        auteurs.set(p, aut);
+        return aut;
+    }
+
+    @Override
+    public Auteur readAuteur(String nom, String prenom, String nationalite) {
+        for (Auteur aut : auteurs) {
+            if (aut.getNom().equals(nom) && aut.getPrenom().equals(prenom) && aut.getNationalite().equals(nationalite))
+                return aut;
+        }
+        return null;
+    }
+
+    @Override
     public List<Auteur> getAuteurs() {
         return auteurs;
     }
 
-    @Override
-    public Auteur majAuteur(Auteur aut) {
-        boolean present = auteurs.contains(aut.getNom());
-        if(!present){
-            return aut;
-        }
-        else return null;
+    private void populate() {
+
     }
 }

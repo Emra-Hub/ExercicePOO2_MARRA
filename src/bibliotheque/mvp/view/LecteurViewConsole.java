@@ -1,14 +1,16 @@
 package bibliotheque.mvp.view;
 
+import bibliotheque.metier.Exemplaire;
 import bibliotheque.metier.Lecteur;
 import bibliotheque.mvp.presenter.LecteurPresenter;
-import bibliotheque.utilitaires.Utilitaire;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class LecteurViewConsole implements LecteurViewInterface {
     private LecteurPresenter presenter;
@@ -27,7 +29,7 @@ public class LecteurViewConsole implements LecteurViewInterface {
     @Override
     public void setListDatas(List<Lecteur> lecteurs) {
         this.llec = lecteurs;
-        Utilitaire.affListe(llec);
+        affListe(llec);
         menu();
     }
 
@@ -36,10 +38,16 @@ public class LecteurViewConsole implements LecteurViewInterface {
         System.out.println("information:" + msg);
     }
 
+    @Override
+    public void affList(List<Exemplaire> lex) {
+        affListe(lex);
+    }
+
     public void menu() {
-        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "modifier", "fin"));
+        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "rechercher","modifier","special","fin"));
         do {
-            int ch = Utilitaire.choixListe(options);
+            int ch = choixListe(options);
+
             switch (ch) {
                 case 1:
                     ajouter();
@@ -48,76 +56,50 @@ public class LecteurViewConsole implements LecteurViewInterface {
                     retirer();
                     break;
                 case 3:
+                    rechercher();
+                    break;
+                case 4:
                     modifier();
                     break;
-                case 4:
-                    System.exit(0);
-            }
-        } while (true);
-    }
-
-    public void opModification(Lecteur lecteur){
-        List options = new ArrayList<>(Arrays.asList("nom", "prenom", "date de naissance","adresse","mail","telephone", "fin"));
-        do {
-            int ch = Utilitaire.choixListe(options);
-            switch (ch) {
-                case 1:
-                    System.out.println("nom ");
-                    String nom = sc.nextLine();
-                    lecteur.setNom(nom);
-                    break;
-                case 2:
-                    System.out.println("prénom ");
-                    String prenom = sc.nextLine();
-                    lecteur.setPrenom(prenom);
-                    break;
-                case 3:
-                    System.out.println("date de naissance");
-                    String[] jma = sc.nextLine().split(" ");
-                    int j = Integer.parseInt(jma[0]);
-                    int m = Integer.parseInt(jma[1]);
-                    int a = Integer.parseInt(jma[2]);
-                    LocalDate dn = LocalDate.of(a, m, j);
-                    lecteur.setDn(dn);
-                    break;
-                case 4:
-                    System.out.println("adresse");
-                    String adr = sc.nextLine();
-                    lecteur.setAdresse(adr);
-                    break;
                 case 5:
-                    System.out.println("mail");
-                    String mail = sc.nextLine();
-                    lecteur.setMail(mail);
+                    special();
                     break;
                 case 6:
-                    System.out.println("tel ");
-                    String tel = sc.nextLine();
-                    lecteur.setTel(tel);
-                    break;
-                case 7:
                     return;
             }
-            presenter.majLecteur(lecteur);
         } while (true);
     }
 
-
-    private void modifier() {
-        //TODO choisir elt et demander les nouvelles valeurs puis appeler méthode maj(lecteur) (à développer) du presenter
-        if(!llec.isEmpty()) {
-            Utilitaire.affListe(llec);
-            int choix = Utilitaire.choixElt(llec);
-            Lecteur lecteur = llec.get(choix - 1);
-            opModification(lecteur);
-        } else System.out.println("Aucun élément présent dans la liste");
+    private void rechercher() {
+        System.out.println("numLecteur : ");
+        int idLecteur = sc.nextInt();
+        presenter.search(idLecteur);
     }
 
+    private void modifier() {
+        int choix = choixElt(llec);
+        Lecteur l = llec.get(choix-1);
+        String nom = modifyIfNotBlank("nom",l.getNom());
+        String prenom = modifyIfNotBlank("prénom",l.getPrenom());
+        String date = modifyIfNotBlank("date de naissance",getDateFrench(l.getDn()));
+        String[] jma = date.split(" ");
+        int j = Integer.parseInt(jma[0]);
+        int m = Integer.parseInt(jma[1]);
+        int a = Integer.parseInt(jma[2]);
+        LocalDate dn = LocalDate.of(a, m, j);
+        String adr = modifyIfNotBlank("adresse",l.getAdresse());
+        String mail= modifyIfNotBlank("mail",l.getMail());
+        String tel =modifyIfNotBlank("tel",l.getTel());
+        Lecteur lec = new Lecteur(l.getNumlecteur(), nom, prenom, dn, adr, mail, tel);
+        presenter.update(lec);
+        llec=presenter.getAll();//rafraichissement
+        affListe(llec);
+    }
 
     private void retirer() {
         if(!llec.isEmpty()) {
-            Utilitaire.affListe(llec);
-            int choix = Utilitaire.choixElt(llec);
+            affListe(llec);
+            int choix = choixElt(llec);
             Lecteur lecteur = llec.get(choix - 1);
             presenter.removeLecteur(lecteur);
         } else System.out.println("Aucun élément présent dans la liste");
@@ -143,6 +125,28 @@ public class LecteurViewConsole implements LecteurViewInterface {
         String tel = sc.nextLine();
         Lecteur lec = new Lecteur(0, nom, prenom, dn, adr, mail, tel);
         presenter.addLecteur(lec);
+    }
+
+    private void special() {
+        int choix =  choixElt(llec);
+        Lecteur lec = llec.get(choix-1);
+        do {
+            System.out.println("1.Exemplaire en location\n2.Exemplaires loués\n3.menu principal");
+            System.out.println("choix : ");
+            int ch = sc.nextInt();
+            sc.skip("\n");
+            switch (ch) {
+                case 1:
+                    presenter.exemplairesEnLocation(lec);
+                    break;
+                case 2:
+                    presenter.exemplairesLoues(lec);
+                    break;
+                case 3: return;
+                default:
+                    System.out.println("choix invalide recommencez ");
+            }
+        } while (true);
     }
 }
 

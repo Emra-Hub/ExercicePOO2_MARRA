@@ -13,34 +13,49 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GestBiblio {
-    public void menu() {
-        List options = new ArrayList<>(Arrays.asList("Lecteur","Auteur","Rayon","Ouvrage","Fin"));
+
+    private DAOLecteur lm;
+    private LecteurViewInterface lv;
+    private LecteurPresenter lp;
+    private DAOAuteur am;
+    private AuteurViewInterface av;
+    private AuteurPresenter ap;
+    private DAORayon rm;
+    private RayonViewInterface rv;
+    private RayonPresenter rp;
+    private DAOOuvrage om;
+    private OuvrageViewInterface ov;
+    private OuvragePresenter op;
+
+    public void gestion() {
+
+        lm = new LecteurModel();
+        lv = new LecteurViewConsole();
+        lp = new LecteurPresenter(lm, lv);//création et injection de dépendance
+
+        am = new AuteurModel();
+        av = new AuteurViewConsole();
+        ap = new AuteurPresenter(am,av);
+
+        rm = new RayonModel();
+        rv = new RayonViewConsole();
+        rp = new RayonPresenter(rm,rv);
+
+        om = new OuvrageModel();
+        ov = new OuvrageViewConsole();
+        op = new OuvragePresenter(om,ov);
+
+        List<String> options = Arrays.asList("Lecteur","Auteur","Rayon","Ouvrage","Fin");
         do {
             int ch = Utilitaire.choixListe(options);
             switch (ch) {
-                case 1:
-                    DAOLecteur lm = new LecteurModel();
-                    LecteurViewInterface lv = new LecteurViewConsole();
-                    LecteurPresenter lp = new LecteurPresenter(lm, lv);//création et injection de dépendance
-                    lp.start();
+                case 1: lp.start();
                     break;
-                case 2:
-                    DAOAuteur am = new AuteurModel();
-                    AuteurViewInterface av = new AuteurViewConsole();
-                    AuteurPresenter ap = new AuteurPresenter(am,av);
-                    ap.start();
+                case 2: ap.start();
                     break;
-                case 3:
-                    DAORayon rm = new RayonModel();
-                    RayonViewInterface rv = new RayonViewConsole();
-                    RayonPresenter rp = new RayonPresenter(rm,rv);
-                    rp.start();
+                case 3: rp.start();
                     break;
-                case 4:
-                    DAOOuvrage om = new OuvrageModel();
-                    OuvrageViewInterface ov = new OuvrageViewConsole();
-                    OuvragePresenter op = new OuvragePresenter(om,ov);
-                    op.start();
+                case 4: op.start();
                     break;
                 case 5:
                     System.exit(0);
@@ -50,7 +65,7 @@ public class GestBiblio {
 
     public static void main(String[] args) {
         GestBiblio g = new GestBiblio();
-        g.menu();
+        g.gestion();
     }
 
 }
