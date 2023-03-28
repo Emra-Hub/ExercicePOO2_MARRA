@@ -1,11 +1,11 @@
 package bibliotheque.mvp.model;
 
-import bibliotheque.metier.Auteur;
+import bibliotheque.metier.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuteurModel implements DAOAuteur {
+public class AuteurModel implements DAOAuteur, SpecialAuteur {
     private List<Auteur> auteurs = new ArrayList<>();
 
     public AuteurModel() {
@@ -50,6 +50,29 @@ public class AuteurModel implements DAOAuteur {
     }
 
     private void populate() {
+        Auteur a = new Auteur("Verne","Jules","France");
+        addAuteur(a);
+        a = new Auteur("Spielberg","Steven","USA");
+        addAuteur(a);
+    }
 
+    @Override
+    public List<Ouvrage> ouvrages(Auteur a) {
+        return a.listerOuvrages();
+    }
+
+    @Override
+    public List<Ouvrage> ouvragesParTypeOuvrage(Auteur a, TypeOuvrage to) {
+        return a.listerOuvrages(to);
+    }
+
+    @Override
+    public List<Livre> ouvragesParTypeLivre(Auteur a, TypeLivre tl) {
+        return a.listerLivres(tl);
+    }
+
+    @Override
+    public List<Ouvrage> ouvragesParGenre(Auteur a, String genre) {
+        return a.listerOuvrages(genre);
     }
 }
