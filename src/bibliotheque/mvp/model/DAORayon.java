@@ -9,7 +9,9 @@ public interface DAORayon {
 
     boolean removeRayon(Rayon ray);
 
-    List<Rayon> getRayons();
+    Rayon updateRayon(Rayon ray);
 
-    Rayon majRayon(Rayon ray);
+    Rayon readRayon(String codeRay);
+
+    List<Rayon> getRayons();
 }
