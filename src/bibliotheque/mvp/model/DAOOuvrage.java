@@ -9,7 +9,9 @@ public interface DAOOuvrage {
 
     boolean removeOuvrage(Ouvrage ouv);
 
-    List<Ouvrage> getOuvrages();
+    Ouvrage updateOuvrage(Ouvrage ouv);
 
-    Ouvrage majOuvrage(Ouvrage ouv);
+    Ouvrage readOuvrage(String title);
+
+    List<Ouvrage> getOuvrages();
 }

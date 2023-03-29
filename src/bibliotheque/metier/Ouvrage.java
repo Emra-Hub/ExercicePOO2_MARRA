@@ -3,6 +3,7 @@ package bibliotheque.metier;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Ouvrage  implements Comparable {
     protected String titre;
@@ -103,6 +104,19 @@ public abstract class Ouvrage  implements Comparable {
     public abstract double amendeRetard(int njours);
 
     public abstract int njlocmax();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ouvrage ouvrage = (Ouvrage) o;
+        return Objects.equals(titre, ouvrage.titre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titre);
+    }
 
     @Override
     public String toString() {
