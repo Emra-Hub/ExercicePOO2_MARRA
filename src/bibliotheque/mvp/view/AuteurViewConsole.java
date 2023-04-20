@@ -90,12 +90,16 @@ public class AuteurViewConsole implements AuteurViewInterface {
         if(!laut.isEmpty()){
             int choix = choixElt(laut);
             Auteur a = laut.get(choix-1);
-            String nom = modifyIfNotBlank("nom",a.getNom());
-            String prenom = modifyIfNotBlank("prénom",a.getPrenom());
-            String nationalite = modifyIfNotBlank("nationalité",a.getNationalite());
-            Auteur aut = new Auteur(nom,prenom,nationalite);
-            presenter.update(aut);
-            laut=presenter.getAll();
+            try{
+                String nom = modifyIfNotBlank("nom",a.getNom());
+                String prenom = modifyIfNotBlank("prénom",a.getPrenom());
+                String nationalite = modifyIfNotBlank("nationalité",a.getNationalite());
+                Auteur aut = new Auteur(nom,prenom,nationalite);
+                presenter.update(aut);
+            }catch(Exception e) {
+                System.out.println("Erreur survenue : "+e.getMessage());
+            }
+            laut=presenter.getAll();//rafraichissemnt
             affListe(laut);
         } else System.out.println("Aucun élément présent dans la liste");
     }
@@ -110,14 +114,18 @@ public class AuteurViewConsole implements AuteurViewInterface {
     }
 
     private void ajouter() {
-        System.out.println("nom ");
-        String nom = sc.nextLine();
-        System.out.println("prénom ");
-        String prenom = sc.nextLine();
-        System.out.println("nationalité ");
-        String nationalite = sc.nextLine();
-        Auteur aut = new Auteur(nom,prenom,nationalite);
-        presenter.addAuteur(aut);
+        try {
+            System.out.println("nom ");
+            String nom = sc.nextLine();
+            System.out.println("prénom ");
+            String prenom = sc.nextLine();
+            System.out.println("nationalité ");
+            String nationalite = sc.nextLine();
+            Auteur aut = new Auteur(nom,prenom,nationalite);
+            presenter.addAuteur(aut);
+        }catch(Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+        }
     }
 
     private void special() {

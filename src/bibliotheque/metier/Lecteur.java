@@ -13,8 +13,10 @@ public class Lecteur {
 
     private List<Location> lloc=new ArrayList<>();
 
-    public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) {
+    public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) throws Exception {
         this.numlecteur = numlecteur;
+        if(nom.trim().equals("")||prenom.trim().equals("")||dn.isAfter(LocalDate.now())||adresse.trim().equals("")||mail.trim().equals("")||tel.trim().equals(""))
+            throw new Exception("nom, prénom, date de naissance, adresse, mail ou téléphone invalide");
         this.nom = nom;
         this.prenom = prenom;
         this.dn = dn;

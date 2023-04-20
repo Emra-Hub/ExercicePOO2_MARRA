@@ -54,10 +54,14 @@ public class LecteurModel implements DAOLecteur, SpecialLecteur {
     }
 
     private void populate(){
-        Lecteur lec = new Lecteur(0,"Dupont","Jean", LocalDate.of(2000,1,4),"Mons","jean.dupont@mail.com","0458774411");
-        addLecteur(lec);
-        lec = new Lecteur(0,"Durant","Aline",LocalDate.of(1980,10,10),"Binche","aline.durant@mail.com","045874444");
-        addLecteur(lec);
+        try {
+            Lecteur lec = new Lecteur(0,"Dupont","Jean", LocalDate.of(2000,1,4),"Mons","jean.dupont@mail.com","0458774411");
+            addLecteur(lec);
+            lec = new Lecteur(0,"Durant","Aline",LocalDate.of(1980,10,10),"Binche","aline.durant@mail.com","045874444");
+            addLecteur(lec);
+        }catch(Exception e) {
+            System.out.println("Erreur survenue : " + e.getMessage());
+        }
     }
 
     @Override

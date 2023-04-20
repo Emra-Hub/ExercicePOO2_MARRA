@@ -50,10 +50,14 @@ public class AuteurModel implements DAOAuteur, SpecialAuteur {
     }
 
     private void populate() {
-        Auteur a = new Auteur("Verne","Jules","France");
-        addAuteur(a);
-        a = new Auteur("Spielberg","Steven","USA");
-        addAuteur(a);
+        try {
+            Auteur a = new Auteur("Verne","Jules","France");
+            addAuteur(a);
+            a = new Auteur("Spielberg","Steven","USA");
+            addAuteur(a);
+        }catch(Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+        }
     }
 
     @Override
