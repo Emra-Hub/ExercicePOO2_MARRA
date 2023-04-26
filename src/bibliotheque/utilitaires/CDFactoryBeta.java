@@ -26,13 +26,18 @@ public class CDFactoryBeta {
         System.out.println("genre");
         String genre=sc.nextLine();
 
-        //détails propres à la classe CD
-        System.out.println("code : ");
-        long code= sc.nextLong();
-        System.out.println("nombre de plages :");
-        byte nbrePlages= sc.nextByte();
-        LocalTime dureeTotale = Utilitaire.lecTime();
-        CD cd =new CD(titre,ageMin,dp,ploc,langue,genre,code,nbrePlages,dureeTotale);
-        return cd;
+        try {
+            //détails propres à la classe CD
+            System.out.println("code : ");
+            long code= sc.nextLong();
+            System.out.println("nombre de plages :");
+            byte nbrePlages= sc.nextByte();
+            LocalTime dureeTotale = Utilitaire.lecTime();
+            CD cd =new CD(titre,ageMin,dp,ploc,langue,genre,code,nbrePlages,dureeTotale);
+            return cd;
+        } catch (Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+            return null;
+        }
     }
 }

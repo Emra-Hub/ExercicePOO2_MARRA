@@ -10,7 +10,9 @@ public class Location {
     private Lecteur loueur;
     private Exemplaire exemplaire;
 
-    public Location(LocalDate dateLocation, LocalDate dateRestitution, Lecteur loueur, Exemplaire exemplaire) {
+    public Location(LocalDate dateLocation, LocalDate dateRestitution, Lecteur loueur, Exemplaire exemplaire) throws Exception {
+        if (dateLocation.isAfter(LocalDate.now()) || dateRestitution.isBefore(dateLocation) || loueur == null || exemplaire == null)
+            throw new Exception("Un ou plusieurs paramètres sont invalides");
         this.dateLocation = dateLocation;
         this.dateRestitution = dateRestitution;
         this.loueur = loueur;

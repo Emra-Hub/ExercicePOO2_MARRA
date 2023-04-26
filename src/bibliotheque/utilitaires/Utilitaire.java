@@ -24,8 +24,12 @@ public class Utilitaire {
         int choix;
         do {
             System.out.println("Choix :");
-            choix = sc.nextInt();
-            sc.skip("\n");
+            try {
+                choix = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur : veuillez entrer un nombre.");
+                choix = -1; // valeur sentinelle pour continuer la boucle
+            }
         } while(choix <1 || choix > l.size());
         return choix;
     }

@@ -184,36 +184,43 @@ public class Gestion {
     }
 
     private void gestRayons() {
-        System.out.println("code ");
-        String code=sc.next();
-        System.out.println("genre ");
-        String genre=sc.next();
-        Rayon r = new Rayon(code,genre);
-        System.out.println("rayon créé");
-
-        //TODO attribuer exemplaire, les exemplaires sont triés par ordre de titre de l'ouvrage , empêcher doublons sur l'exemplaire
+        try {
+            System.out.println("code ");
+            String code=sc.next();
+            System.out.println("genre ");
+            String genre=sc.next();
+            Rayon r = new Rayon(code,genre);
+            System.out.println("rayon créé");
+            //TODO attribuer exemplaire, les exemplaires sont triés par ordre de titre de l'ouvrage , empêcher doublons sur l'exemplaire
+        } catch (Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+        }
     }
 
     private void gestExemplaires() {
-        System.out.println("matricule ");
-        String mat=sc.next();
-        System.out.println("etat  ");
-        String etat=sc.next();
-        System.out.println("ouvrage ");
-        int choix = Utilitaire.choixListe(louv);
-        Exemplaire ex = new Exemplaire(mat,etat,louv.get(choix-1));
-        lex.add(ex);
-        System.out.println("exemplaire créé");
-        //TODO attribuer rayon , les rayons sont triès par ordre de code
-        Collections.sort(lrayon);
-        System.out.println("Liste des rayons : ");
-        int choix2 = Utilitaire.choixListe(lrayon);
-        Rayon r = lrayon.get(choix2-1);
-        r.addExemplaire(ex);
-        System.out.println("Exemplaire ajouté au rayon");
-        System.out.println("Liste des exemplaire déjà existant : ");
-        for (int i = 0; i < lex.size(); i++) {
-            System.out.println((i + 1) + ". " + lex.get(i));
+        try {
+            System.out.println("matricule ");
+            String mat=sc.next();
+            System.out.println("etat  ");
+            String etat=sc.next();
+            System.out.println("ouvrage ");
+            int choix = Utilitaire.choixListe(louv);
+            Exemplaire ex = new Exemplaire(mat,etat,louv.get(choix-1));
+            lex.add(ex);
+            System.out.println("exemplaire créé");
+            //TODO attribuer rayon , les rayons sont triès par ordre de code
+            Collections.sort(lrayon);
+            System.out.println("Liste des rayons : ");
+            int choix2 = Utilitaire.choixListe(lrayon);
+            Rayon r = lrayon.get(choix2-1);
+            r.addExemplaire(ex);
+            System.out.println("Exemplaire ajouté au rayon");
+            System.out.println("Liste des exemplaire déjà existant : ");
+            for (int i = 0; i < lex.size(); i++) {
+                System.out.println((i + 1) + ". " + lex.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
         }
     }
 

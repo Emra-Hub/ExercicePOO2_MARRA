@@ -5,7 +5,9 @@ public class Mail {
     private String message;
     private String dateEnvoi;
 
-    public Mail(String objet, String message, String dateEnvoi) {
+    public Mail(String objet, String message, String dateEnvoi) throws Exception {
+        if(objet.trim().equals("")||message.trim().equals("")||dateEnvoi.trim().equals(""))
+            throw new Exception("objet, message ou date d'envoie invalide");
         this.objet = objet;
         this.message = message;
         this.dateEnvoi = dateEnvoi;

@@ -18,7 +18,9 @@ public abstract class Ouvrage  implements Comparable {
     protected List<Exemplaire> lex = new ArrayList<>();
 
 
-    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) {
+    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) throws Exception {
+        if (titre.trim().equals("") || ageMin <= 0 || dateParution.isAfter(LocalDate.now()) || prixLocation <= 0 || langue.trim().equals("") || genre.trim().equals(""))
+            throw new Exception("Un ou plusieurs paramètres sont invalides");
         this.titre = titre;
         this.ageMin = ageMin;
         this.dateParution = dateParution;
@@ -27,7 +29,6 @@ public abstract class Ouvrage  implements Comparable {
         this.langue = langue;
         this.genre = genre;
     }
-
     public String getTitre() {
         return titre;
     }

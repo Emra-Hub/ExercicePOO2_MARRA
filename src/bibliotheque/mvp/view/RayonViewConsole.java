@@ -77,10 +77,14 @@ public class RayonViewConsole implements RayonViewInterface {
         if(!lr.isEmpty()){
             int choix = choixElt(lr);
             Rayon r = lr.get(choix-1);
-            String codeRay = modifyIfNotBlank("code rayon",r.getCodeRayon());
-            String genre = modifyIfNotBlank("genre",r.getGenre());
-            Rayon ray = new Rayon(codeRay,genre);
-            presenter.update(ray);
+            try {
+                String codeRay = modifyIfNotBlank("code rayon",r.getCodeRayon());
+                String genre = modifyIfNotBlank("genre",r.getGenre());
+                Rayon ray = new Rayon(codeRay,genre);
+                presenter.update(ray);
+            }catch(Exception e) {
+                System.out.println("Erreur survenue : "+e.getMessage());
+            }
             lr = presenter.getAll();
             affListe(lr);
         } else System.out.println("Aucun élément présent dans la liste");
@@ -96,12 +100,16 @@ public class RayonViewConsole implements RayonViewInterface {
     }
 
     private void ajouter() {
-        System.out.println("code rayon ");
-        String codeR = sc.nextLine();
-        System.out.println("genre ");
-        String genre = sc.nextLine();
-        Rayon r = new Rayon(codeR,genre);
-        presenter.addRayon(r);
+        try {
+            System.out.println("code rayon ");
+            String codeR = sc.nextLine();
+            System.out.println("genre ");
+            String genre = sc.nextLine();
+            Rayon r = new Rayon(codeR,genre);
+            presenter.addRayon(r);
+        }catch(Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+        }
     }
 
     private void special() {

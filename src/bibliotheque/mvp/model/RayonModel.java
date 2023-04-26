@@ -49,10 +49,14 @@ public class RayonModel implements DAORayon, SpecialRayon {
     }
 
     private void populate() {
-        Rayon r = new Rayon("r12","aventure");
-        addRayon(r);
-        r = new Rayon("r45","science fiction");
-        addRayon(r);
+        try {
+            Rayon r = new Rayon("r12","aventure");
+            addRayon(r);
+            r = new Rayon("r45","science fiction");
+            addRayon(r);
+        }catch(Exception e) {
+            System.out.println("Erreur survenue : "+e.getMessage());
+        }
     }
 
     @Override
