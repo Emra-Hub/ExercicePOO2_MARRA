@@ -8,6 +8,49 @@ import java.util.Scanner;
 
 public class Utilitaire {
     private static Scanner sc = new Scanner(System.in);
+    public static int lireInt(){
+        int n=0;
+        do{
+            try {
+                String ns = sc.nextLine();
+                n=Integer.parseInt(ns);
+                return n;
+            }
+            catch(NumberFormatException e){
+                System.out.println("valeur numérique incorrecte");
+            }
+
+        } while(true);
+    }
+
+    public static long lireLong(){
+        long n=0;
+        do{
+            try {
+                String ns = sc.nextLine();
+                n=Long.parseLong(ns);
+                return n;
+            }
+            catch(NumberFormatException e){
+                System.out.println("valeur numérique incorrecte");
+            }
+
+        } while(true);
+    }
+    public static double lireDouble(){
+        double n=0;
+        do{
+            try {
+                String ns = sc.nextLine();
+                n=Double.parseDouble(ns);
+                return n;
+            }
+            catch(NumberFormatException e){
+                System.out.println("valeur numérique incorrecte");
+            }
+
+        } while(true);
+    }
     public static int choixListe(List l){
         affListe(l);
         return choixElt(l);
@@ -23,13 +66,8 @@ public class Utilitaire {
     public static int choixElt(List l){
         int choix;
         do {
-            System.out.println("Choix :");
-            try {
-                choix = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Erreur : veuillez entrer un nombre.");
-                choix = -1; // valeur sentinelle pour continuer la boucle
-            }
+            System.out.println("choix :");
+            choix = lireInt();
         } while(choix <1 || choix > l.size());
         return choix;
     }

@@ -60,7 +60,7 @@ public class RayonModel implements DAORayon, SpecialRayon {
     }
 
     @Override
-    public List<Exemplaire> exemplaires(Rayon r) {
-        return r.listerExemplaires();
+    public List<Exemplaire> listerExemplaires(Rayon r) {
+        return new ArrayList<>(r.listerExemplaires());
     }
 }

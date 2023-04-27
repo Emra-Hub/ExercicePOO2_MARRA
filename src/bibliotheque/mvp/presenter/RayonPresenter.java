@@ -55,7 +55,7 @@ public class RayonPresenter {
     }
 
     public void exemplaires(Rayon r) {
-        List<Exemplaire> lex = ((SpecialRayon)model).exemplaires(r);
+        List<Exemplaire> lex = ((SpecialRayon)model).listerExemplaires(r);
         if(lex==null || lex.isEmpty()) view.affMsg("aucun exemplaire trouvé");
         else view.affList(lex);
     }
