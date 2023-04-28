@@ -2,6 +2,7 @@ package bibliotheque.utilitaires;
 
 
 import bibliotheque.metier.Ouvrage;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -13,14 +14,11 @@ public  abstract class OuvrageFactory {
        System.out.println("titre");
        String titre= sc.nextLine();
        System.out.println("age minimum");
-       int ageMin= sc.nextInt();
-       sc.skip("\n");
+       int ageMin= lireInt();
        System.out.println("date de parution");
-
-       LocalDate dp= Utilitaire.lecDate();
+       LocalDate dp= lecDate();
        System.out.println("prix de location");
-       double ploc = sc.nextDouble();
-       sc.skip("\n");
+       double ploc = lireDouble();
        System.out.println("langue");
        String langue=sc.nextLine();
        System.out.println("genre");

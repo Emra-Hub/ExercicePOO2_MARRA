@@ -1,9 +1,10 @@
 package bibliotheque.metier;
 
+
 import java.time.LocalDate;
 import java.util.*;
 
-public class Lecteur {
+public class Lecteur   {
     private int numlecteur;
     private  String nom,prenom;
     private LocalDate dn;
@@ -14,9 +15,8 @@ public class Lecteur {
     private List<Location> lloc=new ArrayList<>();
 
     public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) throws Exception {
+if(nom==null || prenom==null ||nom.trim().equals("")||prenom.trim().equals("")) throw new Exception("informations invalides");
         this.numlecteur = numlecteur;
-        if(nom.trim().equals("")||prenom.trim().equals("")||dn.isAfter(LocalDate.now())||adresse.trim().equals("")||mail.trim().equals("")||tel.trim().equals(""))
-            throw new Exception("nom, prénom, date de naissance, adresse, mail ou téléphone invalide");
         this.nom = nom;
         this.prenom = prenom;
         this.dn = dn;
@@ -128,6 +128,7 @@ public class Lecteur {
         for(Location loc : lloc){
             stex.add(loc.getExemplaire());
         }
-        return stex;
+       return stex;
     }
+
 }

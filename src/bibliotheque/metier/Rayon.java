@@ -1,17 +1,23 @@
 package bibliotheque.metier;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Rayon implements Comparable {
+public class Rayon  {
     private String codeRayon;
     private String genre;
     private List<Exemplaire> lex = new ArrayList<>();
 
+    public Rayon(String codeRayon) {
+        this.codeRayon = codeRayon;
+    }
+
+
     public Rayon(String codeRayon, String genre) throws Exception {
-        if(codeRayon.trim().equals("")||genre.trim().equals(""))
-            throw new Exception("codeRayon ou genre invalide");
+        if(codeRayon==null|| codeRayon.trim().equals("")) throw new Exception("code rayon vide");
+        if(genre==null|| genre.trim().equals("")) throw new Exception("code rayon vide");
         this.codeRayon = codeRayon;
         this.genre = genre;
     }
@@ -37,7 +43,6 @@ public class Rayon implements Comparable {
                 '}';
     }
     public void addExemplaire(Exemplaire e){
-        lex.add(e);
         e.setRayon(this);
     }
 
@@ -74,8 +79,4 @@ public class Rayon implements Comparable {
     }
 
 
-    @Override
-    public int compareTo(Object o) {
-        return this.codeRayon.compareTo(((Rayon)o).codeRayon);
-    }
 }

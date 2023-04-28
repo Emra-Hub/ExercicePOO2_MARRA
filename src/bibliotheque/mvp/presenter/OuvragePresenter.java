@@ -1,75 +1,36 @@
 package bibliotheque.mvp.presenter;
 
-import bibliotheque.metier.Exemplaire;
+
+import bibliotheque.metier.Auteur;
 import bibliotheque.metier.Ouvrage;
-import bibliotheque.mvp.model.DAOOuvrage;
+import bibliotheque.mvp.model.DAO;
 import bibliotheque.mvp.model.SpecialOuvrage;
-import bibliotheque.mvp.view.OuvrageViewInterface;
+import bibliotheque.mvp.view.ViewInterface;
 
-import java.util.List;
 
-public class OuvragePresenter {
-    private DAOOuvrage model;
-    private OuvrageViewInterface view;
+public class OuvragePresenter extends Presenter<Ouvrage> implements SpecialOuvragePresenter{
 
-    public OuvragePresenter(DAOOuvrage model, OuvrageViewInterface view) {
-        this.model = model;
-        this.view = view;
-        this.view.setPresenter(this);
+    private Presenter<Auteur> auteurPresenter;
+    @Override
+    public void setAuteurPresenter(Presenter<Auteur> auteurPresenter) {
+        this.auteurPresenter = auteurPresenter;
     }
 
-    public void start() {
-        view.setListDatas(getAll());
+    @Override
+    public Auteur choixAuteur(){
+       return  auteurPresenter.selection();
     }
 
-    public List<Ouvrage> getAll() { return model.getOuvrages(); }
-
-    public void addOuvrage(Ouvrage ouvrage) {
-        Ouvrage ouv = model.addOuvrage(ouvrage);
-        if(ouv!=null) view.affMsg("création de : "+ouv);
-        else view.affMsg("erreur de création");
-        //List<Ouvrage> ouvrages = model.getOuvrages();
-        //view.setListDatas(ouvrages);
+    public OuvragePresenter(DAO<Ouvrage> model, ViewInterface<Ouvrage> view) {
+        super(model,view);
     }
 
-
-    public void removeOuvrage(Ouvrage ouvrage) {
-        boolean ok = model.removeOuvrage(ouvrage);
-        if(ok) view.affMsg("ouvrage effacé");
-        else view.affMsg("ouvrage non effacé");
-        //List<Ouvrage> ouvrages = model.getOuvrages();
-        //view.setListDatas(ouvrages);
+    @Override
+    public void  listerExemplaire(Ouvrage o){
+        view.affList(((SpecialOuvrage)model).listerExemplaire(o));
     }
-
-    public void update(Ouvrage ouvrage){
-        Ouvrage ouv = model.updateOuvrage(ouvrage);
-        if(ouv!=null) view.affMsg("Modification de : "+ouv);
-        else view.affMsg("erreur de modification");
-        //List<Ouvrage> ouvrages = model.getOuvrages();
-        //view.setListDatas(ouvrages);
-    }
-
-    public void search(String title) {
-        Ouvrage o = model.readOuvrage(title);
-        if(o==null) view.affMsg("recherche infructueuse");
-        else view.affMsg(o.toString());
-    }
-
-    public void exemplaires(Ouvrage o) {
-        List<Exemplaire> lex = ((SpecialOuvrage)model).exemplaires(o);
-        if(lex==null || lex.isEmpty()) view.affMsg("aucun exemplaire trouvé");
-        else view.affList(lex);
-    }
-
-    public void exemplaires(Ouvrage o, boolean enLocation) {
-        List<Exemplaire> lex = ((SpecialOuvrage)model).exemplaires(o,enLocation);
-        if(lex==null || lex.isEmpty()) view.affMsg("aucun exemplaire trouvé");
-        else view.affList(lex);
-    }
-
-    public void amandeRetard(Ouvrage o, int njours) {
-        double amande = ((SpecialOuvrage)model).amandeRetard(o,njours);
-        if(amande==0) view.affMsg("aucune amende à payer");
-        else view.affMsg("L'amande est de : "+amande);
+    @Override
+    public void listerExemplaire(Ouvrage o, boolean enLocation){
+        view.affList(((SpecialOuvrage)model).listerExemplaire(o,enLocation));
     }
 }

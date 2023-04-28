@@ -10,10 +10,8 @@ public class Livre extends Ouvrage{
     private String resume;
 
 
-    public Livre(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nbrePages, TypeLivre tl, String resume) throws Exception {
+    public Livre(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nbrePages, TypeLivre tl, String resume) throws Exception{
         super(titre, ageMin, dateParution, TypeOuvrage.LIVRE, prixLocation, langue, genre);
-        if(isbn.trim().equals("") || nbrePages <= 0 || resume.trim().equals(""))
-            throw new Exception("Un ou plusieurs paramètres sont invalides");
         this.isbn=isbn;
         this.nbrePages=nbrePages;
         this.tl=tl;

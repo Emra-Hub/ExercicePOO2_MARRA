@@ -1,6 +1,9 @@
 package bibliotheque.metier;
 
+
+
 import java.time.LocalDate;
+
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
@@ -10,9 +13,10 @@ public class Location {
     private Lecteur loueur;
     private Exemplaire exemplaire;
 
+
+
     public Location(LocalDate dateLocation, LocalDate dateRestitution, Lecteur loueur, Exemplaire exemplaire) throws Exception {
-        if (dateLocation.isAfter(LocalDate.now()) || dateRestitution.isBefore(dateLocation) || loueur == null || exemplaire == null)
-            throw new Exception("Un ou plusieurs paramètres sont invalides");
+    if(loueur==null || exemplaire==null)  throw new Exception("informations invalides");
         this.dateLocation = dateLocation;
         this.dateRestitution = dateRestitution;
         this.loueur = loueur;
@@ -25,6 +29,8 @@ public class Location {
         this.loueur = loueur;
         this.exemplaire = exemplaire;
         this.dateLocation=LocalDate.now();
+        this.loueur.getLloc().add(this);
+        this.exemplaire.getLloc().add(this);
     }
 
     public LocalDate getDateLocation() {
@@ -96,4 +102,6 @@ public class Location {
     public void enregistrerRetour(){
        if(dateRestitution==null) dateRestitution=LocalDate.now();//test sur nul pour éviter d'enregistrer retour 2 fois
     }
+
+
 }

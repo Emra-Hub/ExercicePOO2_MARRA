@@ -1,15 +1,18 @@
 package bibliotheque.mvp.model;
 
+
 import bibliotheque.metier.Exemplaire;
 import bibliotheque.metier.Lecteur;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LecteurModelV2 implements DAO<Lecteur>, SpecialLecteur {
+public class LecteurModelV2 implements DAO<Lecteur>,SpecialLecteur {
     private int numcli = 0;
     private List<Lecteur> ldatas = new ArrayList<>();
     private int numLecteur = 0;
+
 
     @Override
     public boolean remove(Lecteur elt) {

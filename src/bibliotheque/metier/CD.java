@@ -9,10 +9,8 @@ public class CD extends Ouvrage{
     private byte nbrePlages;
     private LocalTime dureeTotale;
 
-    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) throws Exception {
+    public CD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, byte nbrePlages, LocalTime dureeTotale) throws Exception{
         super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
-        if (code <= 0 || nbrePlages <= 0 || dureeTotale.isBefore(LocalTime.of(0, 1)))
-            throw new Exception("Un ou plusieurs paramètres sont invalides");
         this.code=code;
         this.nbrePlages=nbrePlages;
         this.dureeTotale=dureeTotale;
@@ -73,4 +71,6 @@ public class CD extends Ouvrage{
                 ", dureeTotale='" + dureeTotale + '\'' +
                 "} " ;
     }
+
+
 }

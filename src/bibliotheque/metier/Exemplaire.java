@@ -1,12 +1,14 @@
 package bibliotheque.metier;
 
+
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Exemplaire implements Comparable {
+public class Exemplaire  {
 
     private String matricule;
     private String descriptionEtat;
@@ -17,15 +19,16 @@ public class Exemplaire implements Comparable {
     private String etat;
 
 
+
     private List<Location> lloc= new ArrayList<>();
 
 
     public Exemplaire(String matricule, String descriptionEtat,Ouvrage ouvrage) throws Exception {
-        if (matricule.trim().equals("") || descriptionEtat.trim().equals("") || ouvrage == null)
-            throw new Exception("Un ou plusieurs paramètres sont invalides");
+        if(ouvrage==null) throw new Exception("ouvrage invalide");
         this.matricule = matricule;
         this.descriptionEtat=descriptionEtat;
         this.ouvrage = ouvrage;
+
         this.ouvrage.getLex().add(this);
     }
 
@@ -107,7 +110,7 @@ public class Exemplaire implements Comparable {
     public List<Lecteur> lecteurs(){
         List<Lecteur> ll = new ArrayList<>();
         for(Location l : lloc){
-            if(ll.contains(l)) continue; //par la suite utiliser set
+            if(ll.contains(l.getLoueur())) continue; //par la suite utiliser set
             ll.add(l.getLoueur());
         }
         return null;
@@ -152,8 +155,6 @@ public class Exemplaire implements Comparable {
         return false;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return this.matricule.compareTo(((Exemplaire)o).matricule);
-    }
+
+
 }

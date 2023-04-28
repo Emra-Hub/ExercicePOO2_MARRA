@@ -5,13 +5,12 @@ import bibliotheque.metier.Rayon;
 import java.util.List;
 
 public interface DAORayon {
-    Rayon addRayon(Rayon ray);
+    Rayon addRayon(Rayon r);
 
-    boolean removeRayon(Rayon ray);
+    boolean removeRayon(Rayon r);
+    Rayon updateRayon(Rayon r);
 
-    Rayon updateRayon(Rayon ray);
-
-    Rayon readRayon(String codeRay);
+    Rayon readRayon(int idRayon);
 
     List<Rayon> getRayons();
 }

@@ -1,11 +1,12 @@
 package bibliotheque.metier;
 
+
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public abstract class Ouvrage  implements Comparable {
+public abstract class Ouvrage {
     protected String titre;
     protected int ageMin;
     protected LocalDate dateParution;
@@ -18,9 +19,8 @@ public abstract class Ouvrage  implements Comparable {
     protected List<Exemplaire> lex = new ArrayList<>();
 
 
-    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre) throws Exception {
-        if (titre.trim().equals("") || ageMin <= 0 || dateParution.isAfter(LocalDate.now()) || prixLocation <= 0 || langue.trim().equals("") || genre.trim().equals(""))
-            throw new Exception("Un ou plusieurs paramètres sont invalides");
+    public Ouvrage(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre)throws Exception {
+       if(titre==null || titre.trim().equals("")) throw new Exception("titre invalide");
         this.titre = titre;
         this.ageMin = ageMin;
         this.dateParution = dateParution;
@@ -29,6 +29,7 @@ public abstract class Ouvrage  implements Comparable {
         this.langue = langue;
         this.genre = genre;
     }
+
     public String getTitre() {
         return titre;
     }
@@ -107,19 +108,6 @@ public abstract class Ouvrage  implements Comparable {
     public abstract int njlocmax();
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ouvrage ouvrage = (Ouvrage) o;
-        return Objects.equals(titre, ouvrage.titre);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(titre);
-    }
-
-    @Override
     public String toString() {
         return "Ouvrage{" +
                 "titre='" + titre + '\'' +
@@ -141,7 +129,6 @@ public abstract class Ouvrage  implements Comparable {
         a.getLouvrage().remove(this);
     }
     public void addExemplaire(Exemplaire e){
-        lex.add(e);
         e.setOuvrage(this);
     }
 
@@ -161,8 +148,4 @@ public abstract class Ouvrage  implements Comparable {
         return lex2;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return this.titre.compareTo(((Ouvrage)o).titre);
-    }
 }
