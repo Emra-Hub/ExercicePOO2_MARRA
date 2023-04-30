@@ -1,5 +1,6 @@
 package bibliotheque.mvp.view;
 
+import bibliotheque.comparator.NomPrenomAuteur;
 import bibliotheque.metier.*;
 import bibliotheque.mvp.presenter.AuteurPresenter;
 import bibliotheque.mvp.presenter.LecteurPresenter;
@@ -13,6 +14,12 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 
 
 public class AuteurViewConsole extends AbstractViewConsole<Auteur> implements SpecialAuteurViewConsole {
+    @Override
+    public void setListDatas(List<Auteur> ldatas) {
+        ldatas.sort(new NomPrenomAuteur());
+        super.setListDatas(ldatas);
+    }
+
     @Override
     protected void rechercher() {
         try {

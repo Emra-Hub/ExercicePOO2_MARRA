@@ -1,6 +1,7 @@
 package bibliotheque.mvp.view;
 
 
+import bibliotheque.comparator.NomPrenomLecteur;
 import bibliotheque.metier.Lecteur;
 
 
@@ -10,7 +11,7 @@ import bibliotheque.mvp.presenter.SpecialLecteurPresenter;
 import static bibliotheque.utilitaires.Utilitaire.*;
 
 import java.time.LocalDate;
-
+import java.util.List;
 
 
 public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements SpecialLecteurViewConsole {
@@ -58,6 +59,12 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
        presenter.update(l);
         ldatas=presenter.getAll();//rafraichissement
         affListe(ldatas);
+    }
+
+    @Override
+    public void setListDatas(List<Lecteur> ldatas) {
+        ldatas.sort(new NomPrenomLecteur());
+        super.setListDatas(ldatas);
     }
 
     protected  void retirer() {

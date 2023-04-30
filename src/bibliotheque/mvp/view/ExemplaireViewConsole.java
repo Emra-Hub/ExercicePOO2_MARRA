@@ -1,5 +1,6 @@
 package bibliotheque.mvp.view;
 
+import bibliotheque.comparator.CodeExemplaire;
 import bibliotheque.metier.*;
 import bibliotheque.mvp.model.SpecialExemplaire;
 import bibliotheque.mvp.presenter.AuteurPresenter;
@@ -15,6 +16,12 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
 
 public class ExemplaireViewConsole extends AbstractViewConsole<Exemplaire> implements SpecialExemplaireViewConsole {
+    @Override
+    public void setListDatas(List<Exemplaire> ldatas) {
+        ldatas.sort(new CodeExemplaire());
+        super.setListDatas(ldatas);
+    }
+
     @Override
     protected void rechercher() {
         try{

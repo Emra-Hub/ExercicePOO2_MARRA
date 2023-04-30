@@ -1,5 +1,6 @@
 package bibliotheque.mvp.view;
 
+import bibliotheque.comparator.TitreOuvrage;
 import bibliotheque.metier.*;
 import bibliotheque.mvp.presenter.AuteurPresenter;
 import bibliotheque.mvp.presenter.OuvragePresenter;
@@ -14,6 +15,12 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
 
 public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements SpecialOuvrageViewConsole {
+    @Override
+    public void setListDatas(List<Ouvrage> ldatas) {
+        ldatas.sort(new TitreOuvrage());
+        super.setListDatas(ldatas);
+    }
+
     @Override
     protected void rechercher() {
       //TODO rechercher ouvrage
