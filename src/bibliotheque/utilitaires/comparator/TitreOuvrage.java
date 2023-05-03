@@ -1,4 +1,4 @@
-package bibliotheque.comparator;
+package bibliotheque.utilitaires.comparator;
 
 import bibliotheque.metier.Ouvrage;
 

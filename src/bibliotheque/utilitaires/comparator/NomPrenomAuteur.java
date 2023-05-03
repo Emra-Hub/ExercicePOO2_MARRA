@@ -1,13 +1,12 @@
-package bibliotheque.comparator;
+package bibliotheque.utilitaires.comparator;
 
 import bibliotheque.metier.Auteur;
-import bibliotheque.metier.Lecteur;
 
 import java.util.Comparator;
 
-public class NomPrenomLecteur implements Comparator<Lecteur> {
+public class NomPrenomAuteur implements Comparator<Auteur> {
     @Override
-    public int compare(Lecteur o1, Lecteur o2) {
+    public int compare(Auteur o1, Auteur o2) {
         int nameComparison = o1.getNom().compareTo(o2.getNom());
         if (nameComparison != 0) {
             return nameComparison;

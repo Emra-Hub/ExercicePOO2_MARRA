@@ -1,15 +1,12 @@
 package bibliotheque.mvp.view;
 
-import bibliotheque.comparator.TitreOuvrage;
 import bibliotheque.metier.*;
 import bibliotheque.mvp.presenter.AuteurPresenter;
 import bibliotheque.mvp.presenter.OuvragePresenter;
 import bibliotheque.mvp.presenter.SpecialOuvragePresenter;
 import bibliotheque.utilitaires.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.*;
 import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
@@ -17,7 +14,13 @@ import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
 public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements SpecialOuvrageViewConsole {
     @Override
     public void setListDatas(List<Ouvrage> ldatas) {
-        ldatas.sort(new TitreOuvrage());
+        //ldatas.sort(new TitreOuvrage());
+        Collections.sort(ldatas, new Comparator<Ouvrage>() {
+            @Override
+            public int compare(Ouvrage o1, Ouvrage o2) {
+                return o1.getTitre().compareTo(o2.getTitre());
+            }
+        });
         super.setListDatas(ldatas);
     }
 

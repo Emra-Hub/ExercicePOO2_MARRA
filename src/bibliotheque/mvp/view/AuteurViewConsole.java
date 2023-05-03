@@ -1,14 +1,11 @@
 package bibliotheque.mvp.view;
 
-import bibliotheque.comparator.NomPrenomAuteur;
 import bibliotheque.metier.*;
 import bibliotheque.mvp.presenter.AuteurPresenter;
 import bibliotheque.mvp.presenter.LecteurPresenter;
 import bibliotheque.mvp.presenter.SpecialAuteurPresenter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.*;
 
@@ -16,7 +13,14 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 public class AuteurViewConsole extends AbstractViewConsole<Auteur> implements SpecialAuteurViewConsole {
     @Override
     public void setListDatas(List<Auteur> ldatas) {
-        ldatas.sort(new NomPrenomAuteur());
+        //ldatas.sort(new NomPrenomAuteur());
+        Collections.sort(ldatas, new Comparator<Auteur>() {
+            @Override
+            public int compare(Auteur o1, Auteur o2) {
+                if(o1.getNom().compareTo(o2.getNom())!=0) return (o1.getNom().compareTo(o2.getNom()));
+                return o1.getPrenom().compareTo(o2.getPrenom());
+            }
+        });
         super.setListDatas(ldatas);
     }
 

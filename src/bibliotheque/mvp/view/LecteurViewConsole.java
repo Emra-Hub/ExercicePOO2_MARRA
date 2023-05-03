@@ -1,7 +1,6 @@
 package bibliotheque.mvp.view;
 
 
-import bibliotheque.comparator.NomPrenomLecteur;
 import bibliotheque.metier.Lecteur;
 
 
@@ -11,6 +10,8 @@ import bibliotheque.mvp.presenter.SpecialLecteurPresenter;
 import static bibliotheque.utilitaires.Utilitaire.*;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -63,7 +64,14 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
 
     @Override
     public void setListDatas(List<Lecteur> ldatas) {
-        ldatas.sort(new NomPrenomLecteur());
+        //ldatas.sort(new NomPrenomLecteur());
+        Collections.sort(ldatas, new Comparator<Lecteur>() {
+            @Override
+            public int compare(Lecteur o1, Lecteur o2) {
+                if(o1.getNom().compareTo(o2.getNom())!=0) return (o1.getNom().compareTo(o2.getNom()));
+                return o1.getPrenom().compareTo(o2.getPrenom());
+            }
+        });
         super.setListDatas(ldatas);
     }
 

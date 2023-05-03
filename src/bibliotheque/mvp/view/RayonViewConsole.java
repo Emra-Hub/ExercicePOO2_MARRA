@@ -1,6 +1,5 @@
 package bibliotheque.mvp.view;
 
-import bibliotheque.comparator.GenreRayon;
 import bibliotheque.metier.Ouvrage;
 import bibliotheque.metier.Rayon;
 import bibliotheque.mvp.presenter.OuvragePresenter;
@@ -8,16 +7,20 @@ import bibliotheque.mvp.presenter.RayonPresenter;
 import bibliotheque.mvp.presenter.SpecialRayonPresenter;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class RayonViewConsole extends AbstractViewConsole<Rayon> implements SpecialRayonViewConsole {
     @Override
     public void setListDatas(List<Rayon> ldatas) {
-        ldatas.sort(new GenreRayon());
+        //ldatas.sort(new GenreRayon());
+        Collections.sort(ldatas, new Comparator<Rayon>() {
+            @Override
+            public int compare(Rayon o1, Rayon o2) {
+                return o1.getGenre().compareToIgnoreCase(o2.getGenre());
+            }
+        });
         super.setListDatas(ldatas);
     }
 
