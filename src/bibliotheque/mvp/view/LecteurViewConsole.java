@@ -147,6 +147,13 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
     public void exemplairesLocation(Lecteur lec) {
         ((SpecialLecteurPresenter)presenter).exemplairesEnLocation(lec);
     }
+
+    @Override
+    public void lecParMail() {
+        System.out.print("mail recherché : ");
+        String mail= sc.next();
+        ((SpecialLecteurPresenter)presenter).lecParMail(mail);
+    }
 }
 
 

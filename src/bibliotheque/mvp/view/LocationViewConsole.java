@@ -39,12 +39,10 @@ public class LocationViewConsole extends AbstractViewConsole<Location> implement
     @Override
     protected void ajouter() {
         Lecteur l =((LocationPresenter)presenter).choixLecteur();
-        Exemplaire ex = null;
-        Boolean ok = true;
-        while(ok) {
-            ex = ((LocationPresenter)presenter).choixExemplaire();
-            ok = ex.enLocation();
-            if(ok) System.out.println("Exemplaire en cours de location, veuillez rechoisir..");
+        Exemplaire ex = ((LocationPresenter)presenter).choixExemplaire();
+        if(ex.enLocation()) {
+            affMsg("exemplaire en location");
+            return;
         }
         Location loc = new Location(l,ex);
         presenter.add(loc);
@@ -75,8 +73,8 @@ public class LocationViewConsole extends AbstractViewConsole<Location> implement
 
     @Override
     public void retour(Location l) {
-        if(l.getDateRestitution()==null) ((SpecialLocationPresenter)presenter).enregistrerRetour(l);
-        else System.out.println("Location déjà retournée.");
+        if(l.getExemplaire().enLocation()) ((SpecialLocationPresenter)presenter).enregistrerRetour(l);
+        else affMsg("exemplaire pas en location");
     }
 
     @Override
