@@ -16,7 +16,7 @@ public abstract class Presenter<T> {
     }
 
     public void start() {
-       view.setListDatas(getAll());
+       view.setListDatas(getAll(),null);
     }
 
     public List<T> getAll(){

@@ -12,16 +12,18 @@ import java.util.*;
 import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class RayonViewConsole extends AbstractViewConsole<Rayon> implements SpecialRayonViewConsole {
-    @Override
+    /*@Override
     public void setListDatas(List<Rayon> ldatas) {
         //ldatas.sort(new GenreRayon());
-        Collections.sort(ldatas, new Comparator<Rayon>() {
-            @Override
-            public int compare(Rayon o1, Rayon o2) {
-                return o1.getGenre().compareToIgnoreCase(o2.getGenre());
-            }
-        });
+
+        ldatas.sort((o1, o2) -> o1.getGenre().compareToIgnoreCase(o2.getGenre()));
         super.setListDatas(ldatas);
+    }*/
+
+    @Override
+    public void setListDatas(List<Rayon> ldatas, Comparator<Rayon> cmp) {
+        cmp = (o1, o2) -> o1.getGenre().compareToIgnoreCase(o2.getGenre());
+        super.setListDatas(ldatas, cmp);
     }
 
     @Override

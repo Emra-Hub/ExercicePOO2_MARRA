@@ -13,16 +13,18 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
 
 public class ExemplaireViewConsole extends AbstractViewConsole<Exemplaire> implements SpecialExemplaireViewConsole {
-    @Override
+    /*@Override
     public void setListDatas(List<Exemplaire> ldatas) {
         //ldatas.sort(new CodeExemplaire());
-        Collections.sort(ldatas, new Comparator<Exemplaire>() {
-            @Override
-            public int compare(Exemplaire o1, Exemplaire o2) {
-                return o1.getMatricule().compareTo(o2.getMatricule());
-            }
-        });
+        
+        ldatas.sort((o1, o2) -> o1.getMatricule().compareTo(o2.getMatricule()));
         super.setListDatas(ldatas);
+    }*/
+
+    @Override
+    public void setListDatas(List<Exemplaire> ldatas, Comparator<Exemplaire> cmp) {
+        cmp = (o1, o2) -> o1.getMatricule().compareTo(o2.getMatricule());
+        super.setListDatas(ldatas, cmp);
     }
 
     @Override

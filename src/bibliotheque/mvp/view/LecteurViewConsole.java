@@ -62,17 +62,27 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
         affListe(ldatas);
     }
 
-    @Override
+    /*@Override
     public void setListDatas(List<Lecteur> ldatas) {
         //ldatas.sort(new NomPrenomLecteur());
-        Collections.sort(ldatas, new Comparator<Lecteur>() {
-            @Override
-            public int compare(Lecteur o1, Lecteur o2) {
-                if(o1.getNom().compareTo(o2.getNom())!=0) return (o1.getNom().compareTo(o2.getNom()));
-                return o1.getPrenom().compareTo(o2.getPrenom());
-            }
+
+        Collections.sort(ldatas, (o1, o2) -> {
+            if(o1.getNom().compareTo(o2.getNom())!=0) return (o1.getNom().compareTo(o2.getNom()));
+            return o1.getPrenom().compareTo(o2.getPrenom());
         });
+
+        Comparator<Lecteur> cmp = cmp = (a1,a2) -> a1.getNom().compareTo(a2.getNom());
+        cmp = cmp.thenComparing((a1,a2) -> a1.getPrenom().compareTo(a2.getPrenom()));
+        ldatas.sort(cmp);
+
         super.setListDatas(ldatas);
+    }*/
+
+    @Override
+    public void setListDatas(List<Lecteur> ldatas, Comparator<Lecteur> cmp) {
+        cmp = cmp = (a1,a2) -> a1.getNom().compareTo(a2.getNom());
+        cmp = cmp.thenComparing((a1,a2) -> a1.getPrenom().compareTo(a2.getPrenom()));
+        super.setListDatas(ldatas, cmp);
     }
 
     protected  void retirer() {

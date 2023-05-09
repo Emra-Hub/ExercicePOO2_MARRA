@@ -12,7 +12,7 @@ import static bibliotheque.utilitaires.Utilitaire.*;
 import static bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
 
 public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements SpecialOuvrageViewConsole {
-    @Override
+    /*@Override
     public void setListDatas(List<Ouvrage> ldatas) {
         //ldatas.sort(new TitreOuvrage());
         Collections.sort(ldatas, new Comparator<Ouvrage>() {
@@ -21,7 +21,15 @@ public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements 
                 return o1.getTitre().compareTo(o2.getTitre());
             }
         });
+
+        ldatas.sort((o1, o2) -> o1.getTitre().compareTo(o2.getTitre()));
         super.setListDatas(ldatas);
+    }*/
+
+    @Override
+    public void setListDatas(List<Ouvrage> ldatas, Comparator<Ouvrage> cmp) {
+        cmp = (o1, o2) -> o1.getTitre().compareTo(o2.getTitre());
+        super.setListDatas(ldatas, cmp);
     }
 
     @Override
