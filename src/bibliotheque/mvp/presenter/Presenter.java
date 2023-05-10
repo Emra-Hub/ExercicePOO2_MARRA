@@ -3,20 +3,23 @@ package bibliotheque.mvp.presenter;
 import bibliotheque.mvp.model.DAO;
 import bibliotheque.mvp.view.ViewInterface;
 
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class Presenter<T> {
     protected  DAO<T> model;
     protected  ViewInterface<T> view;
+    protected Comparator<T> cmp;
 
-    public Presenter(DAO<T> model, ViewInterface<T> view) {
+    public Presenter(DAO<T> model, ViewInterface<T> view, Comparator<T> cmp) {
         this.model = model;
         this.view = view;
         this.view.setPresenter(this);
+        this.cmp = cmp;
     }
 
     public void start() {
-       view.setListDatas(getAll(),null);
+       view.setListDatas(getAll(),cmp);
     }
 
     public List<T> getAll(){

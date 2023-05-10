@@ -19,7 +19,7 @@
         @Override
         public void setListDatas(List<T> ldatas, Comparator<T> cmp) {
             this.ldatas = ldatas;
-            ldatas.sort(cmp);
+            this.ldatas.sort(cmp);
             affListe(ldatas);
             menu();
         }

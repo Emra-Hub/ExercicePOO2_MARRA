@@ -20,11 +20,11 @@ public class RayonViewConsole extends AbstractViewConsole<Rayon> implements Spec
         super.setListDatas(ldatas);
     }*/
 
-    @Override
+    /*@Override
     public void setListDatas(List<Rayon> ldatas, Comparator<Rayon> cmp) {
         cmp = (o1, o2) -> o1.getGenre().compareToIgnoreCase(o2.getGenre());
         super.setListDatas(ldatas, cmp);
-    }
+    }*/
 
     @Override
     protected void rechercher() {

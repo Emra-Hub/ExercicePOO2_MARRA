@@ -28,12 +28,12 @@ public class AuteurViewConsole extends AbstractViewConsole<Auteur> implements Sp
         super.setListDatas(ldatas);
     }*/
 
-    @Override
+    /*@Override
     public void setListDatas(List<Auteur> ldatas, Comparator<Auteur> cmp) {
         cmp = (a1,a2) -> a1.getNom().compareTo(a2.getNom());
         cmp = cmp.thenComparing((a1,a2) -> a1.getPrenom().compareTo(a2.getPrenom()));
         super.setListDatas(ldatas, cmp);
-    }
+    }*/
 
     @Override
     protected void rechercher() {

@@ -78,12 +78,12 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
         super.setListDatas(ldatas);
     }*/
 
-    @Override
+    /*@Override
     public void setListDatas(List<Lecteur> ldatas, Comparator<Lecteur> cmp) {
         cmp = cmp = (a1,a2) -> a1.getNom().compareTo(a2.getNom());
         cmp = cmp.thenComparing((a1,a2) -> a1.getPrenom().compareTo(a2.getPrenom()));
         super.setListDatas(ldatas, cmp);
-    }
+    }*/
 
     protected  void retirer() {
         int choix = choixElt(ldatas);

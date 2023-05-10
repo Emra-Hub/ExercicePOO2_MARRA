@@ -7,6 +7,8 @@ import bibliotheque.mvp.model.DAO;
 import bibliotheque.mvp.model.SpecialOuvrage;
 import bibliotheque.mvp.view.ViewInterface;
 
+import java.util.Comparator;
+
 
 public class OuvragePresenter extends Presenter<Ouvrage> implements SpecialOuvragePresenter{
 
@@ -21,8 +23,8 @@ public class OuvragePresenter extends Presenter<Ouvrage> implements SpecialOuvra
        return  auteurPresenter.selection();
     }
 
-    public OuvragePresenter(DAO<Ouvrage> model, ViewInterface<Ouvrage> view) {
-        super(model,view);
+    public OuvragePresenter(DAO<Ouvrage> model, ViewInterface<Ouvrage> view, Comparator<Ouvrage> cmp) {
+        super(model,view,cmp);
     }
 
     @Override

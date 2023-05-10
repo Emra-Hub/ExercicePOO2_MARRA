@@ -107,7 +107,7 @@ public class Auteur  {
                 if(l.getTl().equals(tl)) ll.add(l);
             }
         }*/
-        louvrage.stream().filter(o->o.getTo().equals(LIVRE)).map(o->(Livre)o).filter(o->o.getTl().equals(tl)).forEach(o->ll.add(o));
+        louvrage.stream().filter(o->o.getTo().equals(LIVRE)).filter(o->((Livre)o).getTl().equals(tl)).forEach(o->ll.add((Livre)o));
 
         return ll;
     }

@@ -21,11 +21,11 @@ public class ExemplaireViewConsole extends AbstractViewConsole<Exemplaire> imple
         super.setListDatas(ldatas);
     }*/
 
-    @Override
+    /*@Override
     public void setListDatas(List<Exemplaire> ldatas, Comparator<Exemplaire> cmp) {
         cmp = (o1, o2) -> o1.getMatricule().compareTo(o2.getMatricule());
         super.setListDatas(ldatas, cmp);
-    }
+    }*/
 
     @Override
     protected void rechercher() {

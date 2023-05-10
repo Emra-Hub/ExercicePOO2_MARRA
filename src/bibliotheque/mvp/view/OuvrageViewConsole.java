@@ -26,11 +26,11 @@ public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements 
         super.setListDatas(ldatas);
     }*/
 
-    @Override
+    /*@Override
     public void setListDatas(List<Ouvrage> ldatas, Comparator<Ouvrage> cmp) {
         cmp = (o1, o2) -> o1.getTitre().compareTo(o2.getTitre());
         super.setListDatas(ldatas, cmp);
-    }
+    }*/
 
     @Override
     protected void rechercher() {

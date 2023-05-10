@@ -1,5 +1,10 @@
 package bibliotheque.metier;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Mail {
     private String objet;
     private String message;
@@ -42,5 +47,18 @@ public class Mail {
                 ", message='" + message + '\'' +
                 ", dateEnvoi='" + dateEnvoi + '\'' +
                 '}';
+    }
+
+    public void envoiMail(Lecteur destinataire){
+        File monFichier = new File(destinataire.getMail()+".txt");
+
+        try(FileWriter fw = new FileWriter(monFichier)){
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println("Objet : "+objet+"\n");
+            pw.println("Message : "+message+"\n");
+            pw.println("La bibliothèque, le "+dateEnvoi+"\n");
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
